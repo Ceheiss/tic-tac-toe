@@ -47,8 +47,9 @@ function handleTurn(block){
       lastBlock = block;
       winCheck("first-player");
       if(!gameEnd){
+        debugger;
         checkIfTie();
-        computerTurn();
+        setTimeout(function(){computerTurn();}, 200)
       }
     }
    }
@@ -64,6 +65,8 @@ function tryChance(chance1, chance2, chance3){
   } else if (blockIsFree(chance3)){
     chance3.className += " computer-player" ;
     winCheck("computer-player");
+  } else {
+    randomTry();
   }
 }
 
@@ -81,55 +84,56 @@ function randomTry(){
 
 function computerTurn(){
   let playerLastMove = Number(lastBlock.getAttribute('data-block-number'));
-  
+  let chance1;
+  let chance2;
+  let chance3;
+
   if (playerLastMove === 0) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[1];
-    let chance3 = blocksArray[3];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[1];
+    chance3 = blocksArray[3];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 1) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[0];
-    let chance3 = blocksArray[2];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[0];
+    chance3 = blocksArray[2];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 2) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[1];
-    let chance3 = blocksArray[5];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[1];
+    chance3 = blocksArray[5];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 3) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[6];
-    let chance3 = blocksArray[0];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[6];
+    chance3 = blocksArray[0];
     tryChance(chance1,chance2,chance3);
 
   } else if (playerLastMove === 4) {
-    let chance1 = blocksArray[0];
-    let chance2 = blocksArray[8];
-    let chance3 = blocksArray[6];
+    chance1 = blocksArray[0];
+    chance2 = blocksArray[8];
+    chance3 = blocksArray[6];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 5) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[2];
-    let chance3 = blocksArray[8];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[2];
+    chance3 = blocksArray[8];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 6) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[7];
-    let chance3 = blocksArray[3];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[7];
+    chance3 = blocksArray[3];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 7) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[6];
-    let chance3 = blocksArray[8];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[6];
+    chance3 = blocksArray[8];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 8) {
-    let chance1 = blocksArray[4];
-    let chance2 = blocksArray[7];
-    let chance3 = blocksArray[5];
+    chance1 = blocksArray[4];
+    chance2 = blocksArray[7];
+    chance3 = blocksArray[5];
     tryChance(chance1,chance2,chance3);
-  } else {
-    randomTry();
   }
 }
 
