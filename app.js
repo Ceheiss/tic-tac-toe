@@ -6,6 +6,12 @@ Requirements:
 • Once a game is won, the winner is announced and a new game can be started
 */
 
+// helper functions
+function blockIsFree(block){
+  return (!block.classList.contains("first-player")
+  && !block.classList.contains("computer-player"))
+}
+
 let grid = document.getElementById("grid-container");
 let blocksArray = [];
 let gameEnd = false;
@@ -35,10 +41,7 @@ createGrid();
 // User turn
 function handleTurn(block){
    if(!gameEnd){
-    if (block.classList.contains("first-player")
-    || block.classList.contains("computer-player")){
-    alert("Space Unavailable");
-    } else {
+    if (blockIsFree(block)){
       block.className += " first-player";
       winCheck("first-player");
       if(!gameEnd){
@@ -52,8 +55,7 @@ function handleTurn(block){
 function computerTurn(){
   let randomNum =  Math.floor(Math.random() * blocksArray.length);
   let randomBlock = blocksArray[randomNum]
-  if (!randomBlock.classList.contains("first-player")
-      && !randomBlock.classList.contains("computer-player")){
+  if (blockIsFree(randomBlock)){
      randomBlock.className += " computer-player" ;
      winCheck("computer-player");
   } else {
@@ -63,25 +65,29 @@ function computerTurn(){
 }
 
 
+function handleWin(player){
+  gameEnd = true;
+  setTimeout( function(){
+    alert("Player " + player + " wins. Click ok to start again");
+    document.location.reload()}, 300)
+}
+
 // This functions check every possible way of winning the game
 function checkHorizontalWins(player){
   if(blocksArray[0].classList.contains(player)
     && blocksArray[1].classList.contains(player)
     && blocksArray[2].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
   if(blocksArray[3].classList.contains(player)
     && blocksArray[4].classList.contains(player)
     && blocksArray[5].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
   if(blocksArray[6].classList.contains(player)
     && blocksArray[7].classList.contains(player)
     && blocksArray[8].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
 }
 
@@ -89,20 +95,17 @@ function checkVerticalWins(player){
   if(blocksArray[0].classList.contains(player)
     && blocksArray[3].classList.contains(player)
     && blocksArray[6].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
   if(blocksArray[1].classList.contains(player)
     && blocksArray[4].classList.contains(player)
     && blocksArray[7].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
   if(blocksArray[2].classList.contains(player)
     && blocksArray[5].classList.contains(player)
     && blocksArray[8].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
 }
 
@@ -110,14 +113,12 @@ function checkCrossWins(player){
   if(blocksArray[0].classList.contains(player)
     && blocksArray[4].classList.contains(player)
     && blocksArray[8].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
   if(blocksArray[2].classList.contains(player)
     && blocksArray[4].classList.contains(player)
     && blocksArray[6].classList.contains(player)){
-    gameEnd = true;
-    alert("Player " + player + " wins")
+    handleWin(player)
   }
 }
 
@@ -126,3 +127,6 @@ function winCheck(player){
   checkVerticalWins(player);
   checkCrossWins(player);
 }
+
+
+// restart all  document.location.reload()
