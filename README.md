@@ -1,6 +1,7 @@
 # Tic Tac Toe
 ![starting image](images/tic-tac-toe.png)
-## This is not invincible, but is a Tic Tac Toe Game. Specs: 
+## This is not invincible or unbeatable... but is a Tic Tac Toe Game. 
+## Specs: 
 - 3 x 3 grid
 - User and computer play turn by turn
 - The board and the moves are displayed after each turn

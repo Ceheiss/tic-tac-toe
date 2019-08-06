@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Game Markup -->
   <h1 id="main-title">Tic Tac Toe</h1>
   <div id="main-section">
       <div id="grid-container"></div>
@@ -23,13 +24,15 @@
         </div>
       </div>
   </div>
+  <!-- The Modal - This runs when game is finished-->
   <div id="end-modal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content box">
-      <h1>Winner is </h1>
-      <button class="close">Let's play</button>
+
+    <div class="modal-content">
+      <h1 id="modal-message"></h1>
+      <button class="restart">Play Again!</button>
     </div>
-</div>
+
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
