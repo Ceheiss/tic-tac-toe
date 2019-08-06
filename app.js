@@ -41,12 +41,13 @@ createGrid();
 
 // User turn
 function handleTurn(block){
-   if(!gameEnd){
+  if(!gameEnd){
     if (blockIsFree(block)){
       block.className += " first-player";
       lastBlock = block;
       winCheck("first-player");
       if(!gameEnd){
+        checkIfTie();
         computerTurn();
       }
     }
@@ -74,11 +75,11 @@ function randomTry(){
     winCheck("computer-player");
   } else {
     // if it doesn't find space, the fuction will recursively call itself
-    computerTurn();
+    randomTry();
   }
 }
 
-function betterChance(){
+function computerTurn(){
   let playerLastMove = Number(lastBlock.getAttribute('data-block-number'));
   
   if (playerLastMove === 0) {
@@ -132,27 +133,24 @@ function betterChance(){
   }
 }
 
-// computer turn
-function computerTurn(){
-  betterChance()
-}
-
-
-function checkIfTye(){
-  blocksArray.forEach(function(block){
-    if(!block.classList.contains("first-player")
-    || !block.classList.contains("first-player")){
-      alert("It's a tie")
-      return true;
+function checkIfTie(){
+  for(let i = 0; i < blocksArray.length; i++){
+    if(blockIsFree(blocksArray[i])){
+      return false;
     }
-  })
+  }
+  return (
+  setTimeout( function(){
+    alert("It's a tie, no losers. Click ok to start again");
+    document.location.reload()}, 300))
 }
+
 
 function handleWin(player){
   gameEnd = true;
   setTimeout( function(){
-    alert("Player " + player + " wins. Click ok to start again");
-    document.location.reload()}, 300)
+      alert("Player " + player + " wins. Click ok to start again");
+      document.location.reload()}, 300)
 }
 
 // This functions check every possible way of winning the game
