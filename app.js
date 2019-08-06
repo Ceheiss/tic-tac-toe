@@ -83,8 +83,8 @@ function computerTurn(){
   let playerLastMove = Number(lastBlock.getAttribute('data-block-number'));
   
   if (playerLastMove === 0) {
-    let chance1 = blocksArray[1];
-    let chance2 = blocksArray[4];
+    let chance1 = blocksArray[4];
+    let chance2 = blocksArray[1];
     let chance3 = blocksArray[3];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 1) {
@@ -93,14 +93,14 @@ function computerTurn(){
     let chance3 = blocksArray[2];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 2) {
-    let chance1 = blocksArray[1];
-    let chance2 = blocksArray[4];
+    let chance1 = blocksArray[4];
+    let chance2 = blocksArray[1];
     let chance3 = blocksArray[5];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 3) {
-    let chance1 = blocksArray[0];
+    let chance1 = blocksArray[4];
     let chance2 = blocksArray[6];
-    let chance3 = blocksArray[4];
+    let chance3 = blocksArray[0];
     tryChance(chance1,chance2,chance3);
 
   } else if (playerLastMove === 4) {
@@ -109,23 +109,23 @@ function computerTurn(){
     let chance3 = blocksArray[6];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 5) {
-    let chance1 = blocksArray[2];
-    let chance2 = blocksArray[4];
+    let chance1 = blocksArray[4];
+    let chance2 = blocksArray[2];
     let chance3 = blocksArray[8];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 6) {
-    let chance1 = blocksArray[3];
+    let chance1 = blocksArray[4];
     let chance2 = blocksArray[7];
-    let chance3 = blocksArray[4];
+    let chance3 = blocksArray[3];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 7) {
-    let chance1 = blocksArray[6];
-    let chance2 = blocksArray[4];
+    let chance1 = blocksArray[4];
+    let chance2 = blocksArray[6];
     let chance3 = blocksArray[8];
     tryChance(chance1,chance2,chance3);
   } else if (playerLastMove === 8) {
-    let chance1 = blocksArray[7];
-    let chance2 = blocksArray[4];
+    let chance1 = blocksArray[4];
+    let chance2 = blocksArray[7];
     let chance3 = blocksArray[5];
     tryChance(chance1,chance2,chance3);
   } else {
