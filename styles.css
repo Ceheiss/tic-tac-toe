@@ -1,3 +1,20 @@
-body {
-  background-color: green;
+#grid-container {
+  display: grid;
+  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+  width: 450px;
+  height: 450px;
+}
+
+.grid-block {
+  outline: 2px solid black;
+  width: 150px;
+  height: 150px;
+}
+
+.first-player {
+  background-color: red;
+}
+
+.computer-player {
+  background-color: blue;
 }
