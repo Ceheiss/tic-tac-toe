@@ -1,22 +1,63 @@
+body{
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(rgba(39, 28, 199, 0.3), rgba(182, 25, 5, 0.774));
+  background-size: cover;
+	background-position: center;
+  background-position: center;
+	background-attachment: fixed;
+}
+
+#main-title {
+  margin: 40px;
+  font-size: 55px;
+}
+
+#main-section {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+}
+
 #grid-container {
   display: grid;
   grid-template: repeat(3, 1fr)/repeat(3, 1fr);
   width: 450px;
   height: 450px;
+  margin-right: 40px;
 }
 
 .grid-block {
-  outline: 2px solid black;
+  outline: 2px solid rgb(3,3,3);
   width: 150px;
   height: 150px;
+  border-radius: 5px;
 }
 
 .first-player {
-  background-color: red;
+  background-image: url("images/o-brush.png");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: 70px 70px;
 }
 
 .computer-player {
-  background-color: blue;
+  background-image: url("images/x-brush.png");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: 70px 70px;
+}
+
+.player-title{
+  display: inline-block;
+  margin-right: 40px;
+}
+
+.players-display{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
 }
 
 .modal {
