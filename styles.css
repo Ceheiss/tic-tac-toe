@@ -16,21 +16,23 @@ body{
   height: 150px;
 }
 
-.first-player {
-  background-image: url("images/o-brush.png");
+.first-player, .computer-player {
   background-position: center; 
   background-repeat: no-repeat; 
   background-size: 70px 70px;
+  transition: 0.1s ease-out;
+}
+
+.first-player {
+  background-image: url("images/o-brush.png");
 }
 
 .computer-player {
   background-image: url("images/x-brush.png");
-  background-position: center; 
-  background-repeat: no-repeat; 
-  background-size: 70px 70px;
 }
 
-.player-title{
+.player-title {
+  min-width: 100px;
   display: inline-block;
   margin-right: 40px;
 }
@@ -48,6 +50,14 @@ body{
 }
 
 #main-section {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+}
+
+.player-info {
+  margin-top: 15px;
   display: flex;
   flex-direction: row; 
   justify-content: center;
@@ -94,15 +104,19 @@ body{
   font-family: 'Shojumaru', cursive;
   margin-top: 40px;
   color: #222;
+  background: #eee;
   font-size: 28px;
   font-weight: bold;
   padding: 10px;
   border-radius: 4px;
+  transition: 0.5s ease-out;
 }
 
-.close:hover,
+.restart:hover,
 .close:focus {
   color: black;
+  background: #fff;
   text-decoration: none;
+  transform: scale(1.1);
   cursor: pointer;
 }

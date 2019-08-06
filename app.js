@@ -5,6 +5,7 @@ Requirements:
 • User and computer play turn by turn
 • The board and the moves are displayed after each turn
 • Once a game is won, the winner is announced and a new game can be started
+The game is developed in pure Javascript.
 */
 
 // Everything inside an IIFE to avoid collisions in the global scope
