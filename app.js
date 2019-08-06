@@ -1,3 +1,11 @@
+/*
+Requirements:
+• 3 x 3 grid
+• User and computer play turn by turn
+• The board and the moves are displayed after each turn
+• Once a game is won, the winner is announced and a new game can be started
+*/
+
 let grid = document.getElementById("grid-container");
 let blocksArray = [];
 let gameEnd = false;
@@ -15,7 +23,7 @@ function buildBlock(){
   return blocksArray;
 }
 
-// Creates the playing grid
+// Creates the playing grid and calling the function
 function createGrid(){
   for (var i = 0; i < 9; i++){
     buildBlock();
@@ -26,9 +34,10 @@ createGrid();
 
 // User turn
 function handleTurn(block){
-   if (block.classList.contains("first-player")
-      || block.classList.contains("computer-player")){
-      alert("Space Unavailable");
+   if(!gameEnd){
+    if (block.classList.contains("first-player")
+    || block.classList.contains("computer-player")){
+    alert("Space Unavailable");
     } else {
       block.className += " first-player";
       winCheck("first-player");
@@ -36,6 +45,7 @@ function handleTurn(block){
         computerTurn();
       }
     }
+   }
 }
 
 // computer turn
@@ -47,6 +57,7 @@ function computerTurn(){
      randomBlock.className += " computer-player" ;
      winCheck("computer-player");
   } else {
+    // if it doesn't find space, the fuction will recursively call itself
     computerTurn();
   }
 }
