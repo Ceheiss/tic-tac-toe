@@ -13,7 +13,8 @@ The game is developed in pure Javascript.
 
   // Getting the grid from the DOM
   const grid = document.getElementById("grid-container");
-  const blocksArray = grid.children;
+  // Convert HTMLCollection to array to later use array methods
+  const blocksArray = [...grid.children];
   // Check if game is on
   let gameEnd = false;
   // Variable used in different scopes
@@ -21,7 +22,7 @@ The game is developed in pure Javascript.
   /*--------------------------- Event Listeners  -----------------------------*/
   // event delegation to capture blocks, handleTurn is ran in the target of the event (that is a block). 
   grid.addEventListener('click', function(e){
-    handleTurn(e.target)
+    handleTurn(e.target);
   })
   /*--------------------------- Game Logic - Player Movements -----------------------------*/
   // First player turn
@@ -72,7 +73,7 @@ The game is developed in pure Javascript.
   function computerTurn(){
     /* should have used indexOf(), unnecessary use of data attributes
     console.log("using index of: ", blocksArray.indexOf(lastBlock)); */
-    let playerLastMove = Number(lastBlock.getAttribute('data-block-number'));
+    let playerLastMove = blocksArray.indexOf(lastBlock);
 
     if (playerLastMove === 0) {
       tryChance(blocksArray[4],blocksArray[1],blocksArray[3]);
