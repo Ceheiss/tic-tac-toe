@@ -59,7 +59,7 @@ The game is developed in pure Javascript.
   // If no suggested moves are available, then chooses randomly
   function randomTry(){
     let randomNum =  Math.floor(Math.random() * blocksArray.length);
-    let randomBlock = blocksArray[randomNum]
+    let randomBlock = blocksArray[randomNum];
     if (blockIsFree(randomBlock)){
       randomBlock.className += " computer-player" ;
       winCheck("computer-player");
@@ -71,8 +71,6 @@ The game is developed in pure Javascript.
 
   // This function checks the 8 possible movements of first-player
   function computerTurn(){
-    /* should have used indexOf(), unnecessary use of data attributes
-    console.log("using index of: ", blocksArray.indexOf(lastBlock)); */
     let playerLastMove = blocksArray.indexOf(lastBlock);
 
     if (playerLastMove === 0) {
@@ -120,6 +118,33 @@ The game is developed in pure Javascript.
     )
   }
     
+  //This function checks if a player completed a line
+  function lineChecker(first, second, third, player){
+    if(blocksArray[first].classList.contains(player)
+      && blocksArray[second].classList.contains(player)
+      && blocksArray[third].classList.contains(player)){
+      handleWin(player)
+    }
+  }
+
+  // This functions check every possible way of winning the game.
+  function checkHorizontalWins(player){
+    lineChecker(0, 1, 2, player);
+    lineChecker(3, 4, 5, player);
+    lineChecker(6, 7, 8, player);
+  }
+
+  function checkVerticalWins(player){
+    lineChecker(0, 3, 6, player);
+    lineChecker(1, 4, 7, player);
+    lineChecker(2, 5, 8, player);
+  }
+
+  function checkCrossWins(player){
+    lineChecker(0, 4, 8, player);
+    lineChecker(2, 4, 6, player);
+  }
+
   // This function is ran in each movement to check if game finished
   function winCheck(player){
     checkHorizontalWins(player);
@@ -127,7 +152,7 @@ The game is developed in pure Javascript.
     checkCrossWins(player);
   }
 
-  // Check if winner
+  // If there is a winner, this function handles it
   function handleWin(player){
     let winnerName;
     if(player === "computer-player"){
@@ -141,65 +166,6 @@ The game is developed in pure Javascript.
       modalMessage.innerHTML = "The winner is: " + winnerName; 
     }, 200)
   }
-  // This functions check every possible way of winning the game
-  function checkHorizontalWins(player){
-    if(blocksArray[0].classList.contains(player)
-      && blocksArray[1].classList.contains(player)
-      && blocksArray[2].classList.contains(player)){
-      handleWin(player)
-    }
-    if(blocksArray[3].classList.contains(player)
-      && blocksArray[4].classList.contains(player)
-      && blocksArray[5].classList.contains(player)){
-      handleWin(player)
-    }
-    if(blocksArray[6].classList.contains(player)
-      && blocksArray[7].classList.contains(player)
-      && blocksArray[8].classList.contains(player)){
-      handleWin(player)
-    }
-  }
-
-  function checkVerticalWins(player){
-    if(blocksArray[0].classList.contains(player)
-      && blocksArray[3].classList.contains(player)
-      && blocksArray[6].classList.contains(player)){
-      handleWin(player)
-    }
-    if(blocksArray[1].classList.contains(player)
-      && blocksArray[4].classList.contains(player)
-      && blocksArray[7].classList.contains(player)){
-      handleWin(player)
-    }
-    if(blocksArray[2].classList.contains(player)
-      && blocksArray[5].classList.contains(player)
-      && blocksArray[8].classList.contains(player)){
-      handleWin(player)
-    }
-  }
-
-  function checkCrossWins(player){
-    if(blocksArray[0].classList.contains(player)
-      && blocksArray[4].classList.contains(player)
-      && blocksArray[8].classList.contains(player)){
-      handleWin(player)
-    }
-    if(blocksArray[2].classList.contains(player)
-      && blocksArray[4].classList.contains(player)
-      && blocksArray[6].classList.contains(player)){
-      handleWin(player)
-    }
-  }
-  // Could have been further abstracted by creating an extra function
-  // function checker(first, second, third, player){
-  //   if(blocksArray[first].classList.contains(player)
-  //     && blocksArray[second].classList.contains(player)
-  //     && blocksArray[third].classList.contains(player)){
-  //     handleWin(player)
-  //   }
-  // }
-
-  // checker(0,4,8,"first-player");
   /*------------------- Modal Logic ------------------- */
 
   const modal = document.getElementById("end-modal");
@@ -216,7 +182,7 @@ The game is developed in pure Javascript.
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
-      // here should reload as well
+      document.location.reload();
     }
   }
 }())
