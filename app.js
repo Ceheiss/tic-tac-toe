@@ -11,10 +11,20 @@ The game is developed in pure Javascript.
 // Everything inside an IIFE to avoid collisions in the global scope
 (function(){
 
-  // Geeting the grid from the DOM
+  // Getting the grid from the DOM
   const grid = document.getElementById("grid-container");
+  // Getting all blocks from the DOM
+  const block0 = document.getElementById("0");
+  const block1 = document.getElementById("1");
+  const block2 = document.getElementById("2");
+  const block3 = document.getElementById("3");
+  const block4 = document.getElementById("4");
+  const block5 = document.getElementById("5");
+  const block6 = document.getElementById("6");
+  const block7 = document.getElementById("7");
+  const block8 = document.getElementById("8");
   // To store all blocks
-  const blocksArray = [];
+  const blocksArray = [block0,block1,block2,block3,block4,block5,block6,block7,block8];
   // Check if game is on
   let gameEnd = false;
   // Variable used in different scopes
