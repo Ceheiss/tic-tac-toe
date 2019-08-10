@@ -22,26 +22,31 @@ The game is developed in pure Javascript.
 
   /*--------------------------- Game Setup  -----------------------------*/
   // builds each block, adds them to the array and provide an event listener
-  function buildBlock(number){
-    let block = document.createElement('div');
-    block.className = "grid-block";
-    block.setAttribute('data-block-number', number);
-    grid.appendChild(block);
-    block.addEventListener('click', function(){
-      handleTurn(block);
-    })
-    blocksArray.push(block)
-    return blocksArray;
-  }
+  // function buildBlock(number){
+  //   let block = document.createElement('div');
+  //   block.className = "grid-block";
+  //   block.setAttribute('data-block-number', number);
+  //   grid.appendChild(block);
+  //   block.addEventListener('click', function(){
+  //     handleTurn(this);
+  //   })
+  //   blocksArray.push(block)
+  //   return blocksArray;
+  // }
 
-  // Creates the playing grid and calling the function
-  function createGrid(){
-    for (var i = 0; i < 9; i++){
-      buildBlock(i);
-    }
-  }
+  // // Creates the playing grid and calling the function
+  // function createGrid(){
+  //   for (let i = 0; i < 9; i++){
+  //     buildBlock(i);
+  //   }
+  // }
 
-  createGrid();
+  // createGrid();
+
+/* 
+  Grid written in HTML (not generated with JS)
+*/
+
 
   /*--------------------------- Game Logic - Player Movements -----------------------------*/
   // First player turn
@@ -90,7 +95,10 @@ The game is developed in pure Javascript.
 
   // This function checks the 8 possible movements of first-player
   function computerTurn(){
+    /* should have used indexOf(), unnecessary use of data attributes
+    console.log("using index of: ", blocksArray.indexOf(lastBlock)); */
     let playerLastMove = Number(lastBlock.getAttribute('data-block-number'));
+
     if (playerLastMove === 0) {
       tryChance(blocksArray[4],blocksArray[1],blocksArray[3]);
     } else if (playerLastMove === 1) {
@@ -206,14 +214,23 @@ The game is developed in pure Javascript.
       handleWin(player)
     }
   }
+  // Could have been further abstracted by creating an extra function
+  // function checker(first, second, third, player){
+  //   if(blocksArray[first].classList.contains(player)
+  //     && blocksArray[second].classList.contains(player)
+  //     && blocksArray[third].classList.contains(player)){
+  //     handleWin(player)
+  //   }
+  // }
 
+  // checker(0,4,8,"first-player");
   /*------------------- Modal Logic ------------------- */
 
   const modal = document.getElementById("end-modal");
   const modalMessage = document.getElementById("modal-message");
   const restartBtn = document.getElementsByClassName("restart")[0];
 
-  // When the user clicks on <span> (x), close the modal
+  // When the user clicks button, reload page
   restartBtn.onclick = function() {
     modal.style.display = "none";
     document.location.reload();
@@ -223,6 +240,9 @@ The game is developed in pure Javascript.
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      // here should reload as well
     }
   }
 }())
+
+// Further improvements, besides better AI, is to reset the board instead of loading again the page (basically erase all the classes from the block elements)
