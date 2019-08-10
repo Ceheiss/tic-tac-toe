@@ -13,6 +13,7 @@ The game is developed in pure Javascript.
 
   // Getting the grid from the DOM
   const grid = document.getElementById("grid-container");
+  console.log(grid.children);
   // Getting all blocks from the DOM
   const block0 = document.getElementById("0");
   const block1 = document.getElementById("1");
@@ -30,34 +31,11 @@ The game is developed in pure Javascript.
   // Variable used in different scopes
   let lastBlock;
 
-  /*--------------------------- Game Setup  -----------------------------*/
-  // builds each block, adds them to the array and provide an event listener
-  // function buildBlock(number){
-  //   let block = document.createElement('div');
-  //   block.className = "grid-block";
-  //   block.setAttribute('data-block-number', number);
-  //   grid.appendChild(block);
-  //   block.addEventListener('click', function(){
-  //     handleTurn(this);
-  //   })
-  //   blocksArray.push(block)
-  //   return blocksArray;
-  // }
-
-  // // Creates the playing grid and calling the function
-  // function createGrid(){
-  //   for (let i = 0; i < 9; i++){
-  //     buildBlock(i);
-  //   }
-  // }
-
-  // createGrid();
-
-/* 
-  Grid written in HTML (not generated with JS)
-*/
-
-
+  /*--------------------------- Event Listeners  -----------------------------*/
+  // event delegation to capture blocks
+  grid.addEventListener('click', function(e){
+    handleTurn(e.target)
+  })
   /*--------------------------- Game Logic - Player Movements -----------------------------*/
   // First player turn
   function handleTurn(block){
